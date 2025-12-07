@@ -4,7 +4,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { AuthContext } from "../context/AuthContext"; // <--- Import AuthContext
 import { motion } from "framer-motion";
 import { FaSun, FaMoon, FaPenNib } from "react-icons/fa";
-
+import API from "../api";
 export default function Navbar() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { currentUser, logout } = useContext(AuthContext); // <--- Get User & Logout function

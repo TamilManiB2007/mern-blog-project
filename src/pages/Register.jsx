@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
+import API from "../api"; // <-- Import our API file
 
 export default function Register() {
   const [inputs, setInputs] = useState({
@@ -18,13 +18,12 @@ export default function Register() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // <--- STOP PAGE REFRESH (Critical)
+    e.preventDefault(); 
     try {
-      // NOTE: Ensure your Backend is running on port 5000
-      await axios.post("http://localhost:5000/api/auth/register", inputs);
+      // --- CHANGE: Use API instead of axios ---
+      await API.post("/auth/register", inputs);
       navigate("/login");
     } catch (err) {
-      // If server is off or error, show it here
       setError(err.response ? err.response.data : "Server not connected!");
     }
   };
@@ -32,7 +31,6 @@ export default function Register() {
   return (
     <div className="auth">
       <h1>Register</h1>
-      {/* FIX: Add onSubmit HERE, not on the button */}
       <form onSubmit={handleSubmit}>
         <input 
           required 
@@ -55,7 +53,6 @@ export default function Register() {
           name="password" 
           onChange={handleChange} 
         />
-        {/* FIX: Button just says "submit", Form handles the rest */}
         <button type="submit">Register</button>
         
         {err && <p style={{color:"red"}}>{err}</p>}

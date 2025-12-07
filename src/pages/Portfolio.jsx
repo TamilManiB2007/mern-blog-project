@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaGithub, FaExternalLinkAlt, FaDownload } from "react-icons/fa"; // <--- Import Icons
-
+import API from "../api";
 export default function Portfolio() {
   // YOUR REAL PROJECTS (Updated with ShoeCart)
   const projects = [

@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from 'react'; // Removed unused useEffect
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import moment from 'moment';
+import API from "../api"; // <-- Import API
 
 export default function Write() {
-  // Check if we are in "Edit Mode" (passed via state)
   const state = useLocation().state;
   
   const [value, setValue] = useState(state?.desc || '');
@@ -22,7 +21,9 @@ export default function Write() {
       const filename = Date.now() + file.name;
       formData.append("name", filename);
       formData.append("file", file);
-      await axios.post("http://localhost:5000/api/upload", formData);
+      
+      // --- CHANGE: API.post for upload ---
+      await API.post("/upload", formData);
       return filename;
     } catch (err) {
       console.log(err);
@@ -34,7 +35,6 @@ export default function Write() {
     e.preventDefault();
     let imgUrl = "";
     
-    // Use new image if selected, otherwise keep old image (if editing)
     if (file) {
       imgUrl = await upload();
     } else {
@@ -42,9 +42,9 @@ export default function Write() {
     }
 
     try {
-      // LOGIC: If state exists, it's UPDATE. Else, it's CREATE.
       if (state) {
-        await axios.put(`http://localhost:5000/api/posts/${state._id}`, {
+        // --- CHANGE: API.put for Update ---
+        await API.put(`/posts/${state._id}`, {
           title,
           desc: value,
           cat,
@@ -53,7 +53,8 @@ export default function Write() {
         });
         alert("Blog Updated!");
       } else {
-        await axios.post(`http://localhost:5000/api/posts`, {
+        // --- CHANGE: API.post for Create ---
+        await API.post(`/posts`, {
           title,
           desc: value,
           cat,
@@ -112,7 +113,6 @@ export default function Write() {
         
         <div className="item">
           <h1>Category</h1>
-          {/* Categories */}
           <div className="cat">
             <input type="radio" checked={cat === "projects"} name="cat" value="projects" id="projects" onChange={e => setCat(e.target.value)} />
             <label htmlFor="projects">Projects</label>
