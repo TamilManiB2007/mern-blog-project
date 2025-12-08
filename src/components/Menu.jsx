@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // Added useLocation
+import { Link, useLocation } from "react-router-dom";
+// import axios from "axios";  <-- Remove this
+import API from "../api";     // <-- Import our API helper
 
 export default function Menu({ cat }) {
   const [posts, setPosts] = useState([]);
@@ -9,11 +10,18 @@ export default function Menu({ cat }) {
   const location = useLocation();
   const currentPostId = location.pathname.split("/")[2];
 
+  // --- DEFINE IMAGE URL (Render Backend) ---
+  const PF = "https://tamilmaniblog-backend.onrender.com/images/";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch ALL posts so sidebar is never empty
-        const res = await axios.get(`http://localhost:5000/api/posts`);
+        // --- CHANGE: Use API instead of axios ---
+        // Old: axios.get(`http://localhost:5000/api/posts`);
+        
+        // New:
+        const res = await API.get("/posts");
+        
         setPosts(res.data);
       } catch (err) {
         console.log(err);
@@ -36,7 +44,8 @@ export default function Menu({ cat }) {
         <div className="post" key={post._id}>
           {post.img && (
              <img 
-             src={post.img.includes("http") ? post.img : `http://localhost:5000/images/${post.img}`} 
+             // --- CHANGE: Use PF variable for images ---
+             src={post.img.includes("http") ? post.img : PF + post.img} 
              alt="" 
            />
           )}
