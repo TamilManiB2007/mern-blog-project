@@ -355,17 +355,21 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
   100% { transform: translate(50px, 50px) scale(1.1); }
 }
 
-/* --- SUPER DESIGN CURSOR CSS --- */
+/* --- SUPER DESIGN CURSOR CSS (FIXED) --- */
 .cursor {
   width: 30px;
   height: 30px;
   border: 2px solid var(--primary);
   border-radius: 50%;
   position: fixed;
+  top: 0; /* JS controls the motion */
+  left: 0; /* JS controls the motion */
   pointer-events: none; /* Allows clicking through it */
   z-index: 9999;
   background-color: transparent;
-  transform: translate(-50%, -50%); /* Centers the cursor */
+  
+  /* 💥 THE CENTERING FIX 💥 */
+  transform: translate(-50%, -50%); /* Centers the cursor visually */
 }
 
 /* Hide native cursor ONLY on devices with a mouse */
