@@ -7,7 +7,6 @@ import Register from "./pages/Register";
 import Write from "./pages/Write";
 import Single from "./pages/Single";
 import Portfolio from "./pages/Portfolio";
-// import Cursor from "./components/Cursor"; // <--- Import Cursor
 
 function App() {
   return (
