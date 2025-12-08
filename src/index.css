@@ -355,27 +355,24 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
   100% { transform: translate(50px, 50px) scale(1.1); }
 }
 
-/* --- SUPER DESIGN CURSOR CSS (FIXED) --- */
-.cursor {
+/* --- FINAL STABLE CURSOR CSS --- */
+.cursor-dot {
   width: 30px;
   height: 30px;
   border: 2px solid var(--primary);
   border-radius: 50%;
   position: fixed;
-  top: 0; /* JS controls the motion */
-  left: 0; /* JS controls the motion */
-  pointer-events: none; /* Allows clicking through it */
+  top: 0;
+  left: 0;
+  pointer-events: none; 
   z-index: 9999;
   background-color: transparent;
-  
-  /* 💥 THE CENTERING FIX 💥 */
-  transform: translate(-50%, -50%); /* Centers the cursor visually */
+  /* Centering logic is now in Cursor.jsx (JavaScript) */
 }
 
 /* Hide native cursor ONLY on devices with a mouse */
 @media (pointer: fine) {
   body { cursor: none; }
-  a, button, input, textarea { cursor: none; }
 }
 
 /* RESUME BUTTON STYLING */
@@ -438,8 +435,8 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
    ========================================= */
 @media screen and (max-width: 768px) {
 
-  /* --- HIDE CUSTOM CURSOR ON MOBILE (Fix for "Circle stays at touch") --- */
-  .cursor {
+  /* --- HIDE CUSTOM CURSOR ON MOBILE (Final fix) --- */
+  .cursor-dot {
     display: none !important;
   }
   
