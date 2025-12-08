@@ -11,8 +11,6 @@ import Portfolio from "./pages/Portfolio";
 function App() {
   return (
     <div className="app">
-      {/* 1. MAGIC CURSOR */}
-      <Cursor />
 
       {/* 2. FLOATING BACKGROUND BLOBS */}
       <div className="background-blobs">
