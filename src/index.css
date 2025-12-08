@@ -302,7 +302,7 @@ a {
 footer { margin-top: 100px; padding: 40px; background-color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #1a1a1a; border-top: 1px solid var(--border); }
 
 /* =========================================
-   8. ANIMATED BACKGROUND BLOBS
+   8. ANIMATED BACKGROUND & CURSOR
    ========================================= */
 .background-blobs {
   position: fixed;
@@ -355,6 +355,20 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
   100% { transform: translate(50px, 50px) scale(1.1); }
 }
 
+/* --- SUPER DESIGN CURSOR CSS --- */
+.cursor {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none; /* Allows clicking through it */
+  z-index: 9999;
+  background-color: transparent;
+  transform: translate(-50%, -50%); /* Centers the cursor */
+}
+
+/* Hide native cursor ONLY on devices with a mouse */
 @media (pointer: fine) {
   body { cursor: none; }
   a, button, input, textarea { cursor: none; }
@@ -420,80 +434,75 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
    ========================================= */
 @media screen and (max-width: 768px) {
 
-  /* --- 1. NAVBAR FIX (Bring back Write, Logout) --- */
+  /* --- HIDE CUSTOM CURSOR ON MOBILE (Fix for "Circle stays at touch") --- */
+  .cursor {
+    display: none !important;
+  }
+  
+  /* Reset default cursor on mobile */
+  body, a, button, input {
+    cursor: auto !important;
+  }
+
+  /* --- 1. NAVBAR FIX --- */
   .navbar .container {
     padding: 0 5px !important;
     width: 100% !important;
     justify-content: space-between !important;
   }
 
-  /* Logo Size */
   .navbar .logo h2 {
     font-size: 14px !important;
     white-space: nowrap;
     margin-right: 5px;
   }
 
-  /* Links Container */
-  .navbar .links {
-    gap: 5px !important; /* Chinna Gap */
-  }
+  .navbar .links { gap: 5px !important; }
 
-  /* Text Links (Home, Projects, Logout) - Make them visible but small */
   .navbar .links h6, 
   .navbar .links span, 
   .navbar .links a {
-    display: block !important; /* Ellathayum kaattu! */
-    font-size: 9px !important; /* Size kuraichu */
+    display: block !important; 
+    font-size: 9px !important;
     font-weight: bold;
     white-space: nowrap;
   }
 
-  /* WRITE BUTTON ICON FIX: THE ULTIMATE CENTER (Using Grid) */
+  /* WRITE BUTTON ICON FIX */
   .navbar .write-btn {
-    display: grid !important; /* Grid is better for centering than Flex */
+    display: grid !important; 
     place-items: center !important;
-    
     width: 30px !important;
     height: 30px !important;
     border-radius: 50% !important;
-    
-    /* Prevention */
     min-width: 30px !important;
     min-height: 30px !important;
     flex-shrink: 0 !important;
-    
-    /* Resetting text properties */
     padding: 0 !important;
     margin: 0 !important;
-    line-height: 0 !important; /* Critical fix for vertical offset */
+    line-height: 0 !important; 
     font-size: 12px !important; 
   }
 
-  /* Force icon to not have margins */
   .navbar .write-btn * {
      margin: 0 !important;
      padding: 0 !important;
      display: block !important;
   }
 
-  /* User Name (Tamil) - Itha mattum maraikalam, space kedaikum */
   .navbar .links span:not(.write-btn):not(:last-child) {
      display: none !important; 
   }
 
-  /* --- 2. WRITE PAGE FIX (Stack Vertical) --- */
+  /* --- 2. WRITE PAGE FIX --- */
   .add {
-    flex-direction: column !important; /* Stack editor & sidebar */
+    flex-direction: column !important;
     gap: 20px !important;
     padding: 10px !important;
   }
 
-  .add .content {
-    width: 100% !important;
-  }
+  .add .content { width: 100% !important; }
 
-  /* Menu (Upload/Publish) moves to bottom */
   .add .menu {
     width: 100% !important;
     display: flex !important;
@@ -501,14 +510,12 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
     gap: 15px !important;
   }
   
-  .add .menu .item {
-    width: 100% !important;
-  }
+  .add .menu .item { width: 100% !important; }
 
-  /* --- 3. READ MORE PAGE FIX (No Side Scrolling) --- */
+  /* --- 3. READ MORE PAGE FIX --- */
   .single {
     display: flex !important;
-    flex-direction: column !important; /* Mel irunthu keezha */
+    flex-direction: column !important; 
     padding: 10px !important;
     width: 100% !important;
   }
@@ -525,9 +532,7 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
     word-wrap: break-word; 
   }
 
-  .single .content h1 {
-    font-size: 24px !important;
-  }
+  .single .content h1 { font-size: 24px !important; }
 
   .single .menu {
     width: 100% !important;
