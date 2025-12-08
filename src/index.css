@@ -302,7 +302,7 @@ a {
 footer { margin-top: 100px; padding: 40px; background-color: var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: #1a1a1a; border-top: 1px solid var(--border); }
 
 /* =========================================
-   8. ANIMATED BACKGROUND & CURSOR
+   8. ANIMATED BACKGROUND BLOBS
    ========================================= */
 .background-blobs {
   position: fixed;
@@ -355,25 +355,7 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
   100% { transform: translate(50px, 50px) scale(1.1); }
 }
 
-/* --- FINAL STABLE CURSOR CSS --- */
-.cursor-dot {
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--primary);
-  border-radius: 50%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none; 
-  z-index: 9999;
-  background-color: transparent;
-  /* Centering logic is now in Cursor.jsx (JavaScript) */
-}
-
-/* Hide native cursor ONLY on devices with a mouse */
-@media (pointer: fine) {
-  body { cursor: none; }
-}
+/* --- REMOVED CUSTOM CURSOR CSS --- */
 
 /* RESUME BUTTON STYLING */
 .resume-btn {
@@ -431,20 +413,12 @@ footer { margin-top: 100px; padding: 40px; background-color: var(--accent); disp
 }
 
 /* =========================================
-   9. MOBILE RESPONSIVE FIX (ALL ISSUES SOLVED)
+   9. MOBILE RESPONSIVE FIX
    ========================================= */
+/* All custom cursor hiding rules are removed. The browser takes over. */
+
 @media screen and (max-width: 768px) {
-
-  /* --- HIDE CUSTOM CURSOR ON MOBILE (Final fix) --- */
-  .cursor-dot {
-    display: none !important;
-  }
   
-  /* Reset default cursor on mobile */
-  body, a, button, input {
-    cursor: auto !important;
-  }
-
   /* --- 1. NAVBAR FIX --- */
   .navbar .container {
     padding: 0 5px !important;
